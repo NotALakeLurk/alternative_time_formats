@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Alternative Time Formats</title>
+	<link rel="shortcut icon" type="image/png" href="favicon.png">
 
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="script.js"></script>
@@ -13,9 +14,19 @@
 <main>
     <h1>Alternative Time Formats</h1>
 
+    <!--
+        TODO:
+        - Get flex working?
+        - Setup other time formats
+        - Decide whether to go the <details> route
+    -->
+
     <article>
-        <h2>Demilitarized Time</h2>
-        <iframe id="demilitarized-time" src="times/demilitarized_time.html" frameborder="0" width="230" height="30"></iframe>
+        <details>
+        <summary>
+            <h2>Demilitarized Time</h2>
+            <iframe id="demilitarized-time" src="times/demilitarized_time.html" height="20" width="240" scrolling="no"></iframe>
+        </summary>
         <p>
             Demilitarized Time stems from the fact that the minutes, seconds,
             and milliseconds of non-militarized time don't have meridian identifiers 
@@ -35,6 +46,7 @@
             minute, second, and millisecond though; sometimes anticipating the 
             identifier flips can be enthralling!
         </p>
+        </details>
     </article>
 
     <article>

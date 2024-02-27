@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../styles.css">
+</head>
+<body class="widget-body">
+    <canvas class="time-canvas" width="240" height="20"></canvas>
+    
+    <script>
+        const ctx = document.querySelector(".time-canvas").getContext("2d");
+        
+        function set_style() {
+            // get the style of the canvas and apply it to the time
+            ctx.fillStyle = window.getComputedStyle(ctx.canvas).getPropertyValue("color").replace(/"/g, "");
+            ctx.font = window.getComputedStyle(ctx.canvas).getPropertyValue("font").replace(/"/g, "");
+        }
+        set_style();
+        // TODO: eventually set up a system for the widget user to customize the style of the canvas
+        const style_query = window.matchMedia("(prefers-color-scheme: dark)");
+        style_query.addEventListener("change", set_style);
+
+        //TODO: revisit this function 
+        function demilitarize_number(number, max) {
+            if ( (number % max) == 0 ) { return (max + ((number % (2*max))? "pm" : "am"))}
+
+            if (number <= max) { return (number + "am")}
+
+            return ((number % max) + "pm")
+        }
+
+        function demilitarize_time(t) {
+            let config = [];
+            /* Push to config: time, meridian, total length in characters */
+            config.push([t.getHours(), 12, 4]);
+            config.push([t.getMinutes(), 30, 4]);
+            config.push([t.getSeconds(), 30, 4]);
+            config.push([t.getMilliseconds(), 500, 5]);
+
+            let res = [];
+            for (const element of config) {
+                res.push(
+                    demilitarize_number(element[0], element[1])
+                        .padStart(element[2], "0")
+                );
+            }
+
+            return res.join(":");
+        }
+
+        setInterval(() => {
+            ctx.clearRect(0,0, ctx.canvas.width,ctx.canvas.height);
+            ctx.fillText(demilitarize_time(new Date()), 0,15);
+        }, 10);
+    </script>
+</body>
+</html>

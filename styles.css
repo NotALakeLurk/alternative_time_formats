@@ -1,0 +1,48 @@
+/* Light/Dark Mode */
+@media (prefers-color-scheme: light) {
+	* {
+        color: black;
+        background-color: white;
+    }
+}
+@media (prefers-color-scheme: dark) {
+    * {
+        color: white;
+        background-color: black;
+    }
+}
+
+.time-canvas {
+    font: 20px 'Courier New', Courier, monospace;
+}
+
+.widget-body {
+    margin: 0;
+}
+
+iframe {
+    padding: 5px;
+    margin: 3px 0;
+}
+
+article {
+    border: 1px solid;
+    border-radius: 10px;
+
+    padding: 0 10px;
+    margin: 10px 0;
+}
+
+summary {
+    display: block;
+}
+
+/* body {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+body>* {
+    flex: 0 1 auto;
+    display: inline;
+} */

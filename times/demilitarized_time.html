@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Demilitarized Time</title>
+
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="../styles.css">
 </head>
 <body class="widget-body">
     <canvas class="time-canvas" width="240" height="20"></canvas>
     
+    <script src="common.js"></script>
     <script>
-        const ctx = document.querySelector(".time-canvas").getContext("2d");
-        
-        function set_style() {
-            // get the style of the canvas and apply it to the time
-            ctx.fillStyle = window.getComputedStyle(ctx.canvas).getPropertyValue("color").replace(/"/g, "");
-            ctx.font = window.getComputedStyle(ctx.canvas).getPropertyValue("font").replace(/"/g, "");
-        }
-        set_style();
-        // TODO: eventually set up a system for the widget user to customize the style of the canvas
-        const style_query = window.matchMedia("(prefers-color-scheme: dark)");
-        style_query.addEventListener("change", set_style);
-
         //TODO: revisit this function 
         function demilitarize_number(number, max) {
             if ( (number % max) == 0 ) { return (max + ((number % (2*max))? "pm" : "am"))}
@@ -47,10 +39,7 @@
             return res.join(":");
         }
 
-        setInterval(() => {
-            ctx.clearRect(0,0, ctx.canvas.width,ctx.canvas.height);
-            ctx.fillText(demilitarize_time(new Date()), 0,15);
-        }, 10);
+        start(demilitarize_time);
     </script>
 </body>
 </html>
